@@ -56,12 +56,10 @@ Before using `snake-bpt`, make sure the following tools are installed and availa
 Clone the repository and build the binary with Go:
 
 ```bash
-git clone https://github.com/mohdareeb0x-commits/snake-bpt.git
-cd snake-bpt
-go build -o snake-bpt
+go install github.com/mohdareeb0x-commits/snake-bpt
 ```
 
-Then run it from the current directory or move the binary into your `$PATH`.
+Then run it
 
 ---
 
@@ -70,19 +68,19 @@ Then run it from the current directory or move the binary into your `$PATH`.
 ### Show help
 
 ```bash
-./snake-bpt --help
+snake-bpt --help
 ```
 
 ### Create a Cobra CLI scaffold
 
 ```bash
-./snake-bpt create cobra --name my-cli
+snake-bpt create cobra --name my-cli
 ```
 
 ### Create a FastAPI scaffold
 
 ```bash
-./snake-bpt create fastapi --host 0.0.0.0 --port 8000
+snake-bpt create fastapi --host 0.0.0.0 --port 8000
 ```
 
 ---

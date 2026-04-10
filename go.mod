@@ -1,4 +1,4 @@
-module snake-bpt
+module github.com/mohdareeb0x-commits/snake-bpt
 
 go 1.25.0
 

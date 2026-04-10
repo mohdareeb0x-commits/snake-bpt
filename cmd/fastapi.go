@@ -5,7 +5,7 @@ package cmd
 
 import (
 	"os"
-	"snake-bpt/logic"
+	"github.com/mohdareeb0x-commits/snake-bpt/logic"
 
 	"github.com/pterm/pterm"
 	"github.com/spf13/cobra"
