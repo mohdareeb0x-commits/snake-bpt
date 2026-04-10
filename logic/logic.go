@@ -10,6 +10,7 @@ import (
 )
 
 func AddCobra(cliName string) error {
+
 	deps := []string{"go", "cobra-cli", "git"}
 	for _, dep := range deps {
 		if err := CheckDependency(dep); err != nil {
@@ -50,6 +51,7 @@ func AddCobra(cliName string) error {
 }
 
 func AddFastAPI(host string, port string) error {
+	
 	deps := []string{"uv", "git"}
 	for _, dep := range deps {
 		if err := CheckDependency(dep); err != nil {
