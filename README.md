@@ -56,7 +56,7 @@ Before using `snake-bpt`, make sure the following tools are installed and availa
 Clone the repository and build the binary with Go:
 
 ```bash
-go install github.com/mohdareeb0x-commits/snake-bpt
+go install github.com/mohdareeb0x-commits/snake-bpt@latest
 ```
 
 Then run it
