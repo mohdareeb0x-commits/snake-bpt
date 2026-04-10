@@ -1,5 +1,5 @@
 /*
-Copyright © 2026 NAME HERE <EMAIL ADDRESS>
+Copyright © 2026 snake-bpt mohdareeb0x@gmail.com
 */
 package cmd
 
@@ -14,13 +14,13 @@ import (
 // cobraCmd represents the cobra command
 var cobraCmd = &cobra.Command{
 	Use:   "cobra",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Generate a Cobra CLI project scaffold",
+	Long: `Cobra creates a new Cobra-based CLI project scaffold.
+Use the --name flag to specify the CLI executable name.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+Examples:
+  snake-bpt create cobra --name my-cli
+  snake-bpt create cobra --name mytool`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		cliName, err := cmd.Flags().GetString("name")

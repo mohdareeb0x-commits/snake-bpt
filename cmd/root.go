@@ -1,6 +1,5 @@
 /*
-Copyright © 2026 NAME HERE <EMAIL ADDRESS>
-
+Copyright © 2026 snake-bpt mohdareeb0x@gmail.com
 */
 package cmd
 
@@ -15,13 +14,14 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "snake-bpt",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Short: "Snake-BPT CLI tool for bootstrapping projects",
+	Long: `Snake-BPT is a command-line tool to scaffold application templates.
+Use the create command with subcommands such as cobra or fastapi to
+generate a Cobra CLI project or a FastAPI service, respectively.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+Examples:
+  snake-bpt create cobra --name my-cli
+  snake-bpt create fastapi --host 127.0.0.1 --port 8000`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },

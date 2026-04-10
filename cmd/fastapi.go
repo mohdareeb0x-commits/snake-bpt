@@ -1,5 +1,5 @@
 /*
-Copyright © 2026 NAME HERE <EMAIL ADDRESS>
+Copyright © 2026 snake-bpt mohdareeb0x@gmail.com
 */
 package cmd
 
@@ -14,13 +14,13 @@ import (
 // fastapiCmd represents the fastapi command
 var fastapiCmd = &cobra.Command{
 	Use:   "fastapi",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Generate a FastAPI project scaffold",
+	Long: `FastAPI creates a new Python FastAPI project scaffold.
+Use the host and port flags to configure the application bind address.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+Examples:
+  snake-bpt create fastapi --host 0.0.0.0 --port 8000
+  snake-bpt create fastapi --host 127.0.0.1 --port 8080`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		host, err := cmd.Flags().GetString("host")
@@ -28,7 +28,7 @@ to quickly create a Cobra application.`,
 			pterm.Error.Println(err)
 			os.Exit(1)
 		}
-		
+
 		if !logic.ValidateIP(host) {
 			os.Exit(1)
 		}

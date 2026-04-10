@@ -1,6 +1,5 @@
 /*
-Copyright © 2026 NAME HERE <EMAIL ADDRESS>
-
+Copyright © 2026 snake-bpt mohdareeb0x@gmail.com
 */
 package cmd
 
@@ -13,13 +12,13 @@ import (
 // createCmd represents the create command
 var createCmd = &cobra.Command{
 	Use:   "create",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Scaffold a new project template",
+	Long: `Create is the parent command for project scaffolding.
+Use a subcommand to generate a specific type of template.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+Examples:
+  snake-bpt create cobra --name my-cli
+  snake-bpt create fastapi --host 0.0.0.0 --port 8000`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("create called")
 	},
