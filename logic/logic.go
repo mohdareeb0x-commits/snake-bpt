@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+
+	"github.com/pterm/pterm"
 )
 
 func AddCobra(cliName string) error {
@@ -41,26 +43,30 @@ func AddFastAPI(host string, port string) error {
 	if err != nil {
 		return errors.New("FastAPI project initialization stopped: Project might be already initialized")
 	}
+	pterm.Info.Println("Initialized uv project")
 
 	_, err = exec.Command("uv", "add", "fastapi[standard]").Output()
 	if err != nil {
 		return errors.New("FastAPI project initialization stopped: Dependencies installation problem")
 	}
+	pterm.Info.Println("Added fastapi[standard]")
 
 	_, err = exec.Command("uv", "add", "uvicorn[standard]").Output()
 	if err != nil {
 		return errors.New("FastAPI project initialization stopped: Dependencies installation problem")
 	}
+	pterm.Info.Println("Added uvicorn[standard]")
 
 	_, err = exec.Command("mkdir", "app").Output()
 	if err != nil {
 		return errors.New("CLI initialization stopped: Unable to create directories")
 	}
-
+	
 	_, err = exec.Command("touch", "app/app.py").Output()
 	if err != nil {
 		return errors.New("CLI initialization stopped: Unable to create files")
 	}
+	pterm.Info.Println("Initialized 'app' directory")
 
 	file, err := os.OpenFile("app/app.py", os.O_RDWR, 0666)
 
@@ -96,6 +102,7 @@ func AddFastAPI(host string, port string) error {
 	if err != nil {
 		return errors.New("CLI initialization stopped: Unable to write files")
 	}
+	pterm.Info.Println("Added required code")
 
 	return nil
 }
