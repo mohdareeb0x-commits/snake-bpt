@@ -73,7 +73,7 @@ snake-bpt --help
 
 ### Create a Cobra CLI scaffold
 
-1. Create and enter your project foler:
+1. Create and enter your project folder:
 ```bash
 mkdir my-cli && cd my-cli
 ```
@@ -85,7 +85,7 @@ snake-bpt create cobra --name my-cli
 
 ### Create a FastAPI scaffold
 
-1. Create and enter your project foler:
+1. Create and enter your project folder:
 ```bash
 mkdir my-api && cd my-api
 ```
