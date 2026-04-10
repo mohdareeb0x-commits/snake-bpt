@@ -14,11 +14,13 @@ func AddCobra(cliName string) error {
 	if err != nil {
 		return errors.New("CLI initialization stopped: CLI might be already initialized")
 	}
+	pterm.Info.Println("Initialized go module")
 
 	_, err = exec.Command("cobra-cli", "init").Output()
 	if err != nil {
 		return errors.New("CLI initialization stopped: CLI might be already initialized")
 	}
+	pterm.Info.Println("Initialized cobra-cli")
 
 	_, err = exec.Command("go", "mod", "tidy").Output()
 	if err != nil {
@@ -29,11 +31,13 @@ func AddCobra(cliName string) error {
 	if err != nil {
 		return errors.New("CLI initialization stopped: Unable to intialize git")
 	}
+	pterm.Info.Println("Initialized git")
 
 	_, err = exec.Command("touch", ".gitignore").Output()
 	if err != nil {
 		return errors.New("CLI initialization stopped: Unable to intialize git")
 	}
+	pterm.Info.Println("Added .gitignore")
 
 	return nil
 }
