@@ -39,7 +39,12 @@ func AddCobra(cliName string) error {
 }
 
 func AddFastAPI(host string, port string) error {
-	_, err := exec.Command("uv", "init", ".").Output()
+	_, err := exec.Command("ping", "-c", "1", "8.8.8.8").Output()
+	if err != nil {
+		return errors.New("No internet connection")
+	}
+
+	_, err = exec.Command("uv", "init", ".").Output()
 	if err != nil {
 		return errors.New("FastAPI project initialization stopped: Project might be already initialized")
 	}
