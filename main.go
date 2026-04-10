@@ -1,6 +1,5 @@
 /*
-Copyright © 2026 NAME HERE <EMAIL ADDRESS>
-
+Copyright © 2026 snake-bpt mohdareeb0x@gmail.com
 */
 package main
 

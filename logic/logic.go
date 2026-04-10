@@ -10,6 +10,13 @@ import (
 )
 
 func AddCobra(cliName string) error {
+	deps := []string{"go", "cobra-cli", "git"}
+	for _, dep := range deps {
+		if err := CheckDependency(dep); err != nil {
+			return err
+		}
+	}
+
 	_, err := exec.Command("go", "mod", "init", cliName).Output()
 	if err != nil {
 		return errors.New("CLI initialization stopped: CLI might be already initialized")
@@ -43,6 +50,13 @@ func AddCobra(cliName string) error {
 }
 
 func AddFastAPI(host string, port string) error {
+	deps := []string{"uv", "git"}
+	for _, dep := range deps {
+		if err := CheckDependency(dep); err != nil {
+			return err
+		}
+	}
+
 	_, err := exec.Command("ping", "-c", "1", "8.8.8.8").Output()
 	if err != nil {
 		return errors.New("No internet connection")

@@ -1,7 +1,9 @@
 package logic
 
 import (
+	"fmt"
 	"net"
+	"os/exec"
 	"strconv"
 
 	"github.com/pterm/pterm"
@@ -29,4 +31,13 @@ func ValidateIP(ip string) bool {
 	}
 
 	return true
+}
+
+func CheckDependency(name string) error {
+	_, err := exec.LookPath(name)
+	if err != nil {
+		return fmt.Errorf("Dependency Error: %s is not installed or not in PATH", name)
+	}
+
+	return nil
 }
