@@ -1,12 +1,13 @@
 /*
 Copyright © 2026 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
-	"fmt"
+	"os"
+	"snake-bpt/logic"
 
+	"github.com/pterm/pterm"
 	"github.com/spf13/cobra"
 )
 
@@ -21,7 +22,18 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("cobra called")
+
+		cliName, err := cmd.Flags().GetString("name")
+
+		err = logic.AddCobra(cliName)
+
+		if err != nil {
+			pterm.Error.Println(err)
+			os.Exit(1)
+		}
+
+		pterm.Success.Println("CLI initialized with name:", cliName)
+		
 	},
 }
 
@@ -37,4 +49,5 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// cobraCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	cobraCmd.Flags().String("name", "my-cli", "To initialize cli name")
 }
