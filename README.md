@@ -79,6 +79,12 @@ snake-bpt create cobra --name my-cli
 
 ### Create a FastAPI scaffold
 
+1. Create and enter your project foler:
+```bash
+mkdir my-api && cd my-api
+```
+
+2. Run the scaffold command:
 ```bash
 snake-bpt create fastapi --host 0.0.0.0 --port 8000
 ```
