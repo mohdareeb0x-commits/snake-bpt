@@ -73,6 +73,12 @@ snake-bpt --help
 
 ### Create a Cobra CLI scaffold
 
+1. Create and enter your project foler:
+```bash
+mkdir my-cli && cd my-cli
+```
+
+2. Run the scaffold command:
 ```bash
 snake-bpt create cobra --name my-cli
 ```
