@@ -25,7 +25,7 @@ This tool is built in Go and uses Cobra for command parsing and PTerm for format
 
 - `snake-bpt create fastapi --host <host> --port <port>`
   - Requires `uv` package manager and `git`
-  - Verifies internet connectivity by pinging `8.8.8.8`
+  - Verifies internet connectivity by `http.Get("https://clients3.google.com/generate_204")`
   - Initializes a new UV project
   - Installs `fastapi[standard]` and `uvicorn[standard]`
   - Creates `app/app.py` and `main.py`
@@ -126,13 +126,15 @@ Scaffolds a new FastAPI project.
 
 - `main.go` - application entrypoint
 - `cmd/` - Cobra command definitions
-  - `root.go` - root command
   - `create.go` - create command
   - `cobra.go` - Cobra scaffold command
   - `fastapi.go` - FastAPI scaffold command
+  - `root.go` - root command
 - `logic/` - scaffold and validation logic
   - `logic.go` - project initialization implementations
+  - `logic_test.go` - testing for project initializaion
   - `validation.go` - input validation and dependency checks
+  - `validation_test.go` - testing for input validation and dependency check
 
 ---
 
