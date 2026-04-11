@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path/filepath"
 
 	"github.com/pterm/pterm"
 )
@@ -53,7 +54,8 @@ func AddCobra(cliName string) error {
 	}
 	pterm.Info.Println("Initialized git")
 
-	if err := RunCmd(dir, "touch", ".gitignore"); err != nil {
+	_, err = os.Create(".gitignore")
+	if err != nil {
 		return errors.New("CLI initialization stopped: Unable to intialize git")
 	}
 	pterm.Info.Println("Added .gitignore")
@@ -95,11 +97,13 @@ func AddFastAPI(host string, port string) error {
 	}
 	pterm.Info.Println("Added uvicorn[standard]")
 
-	if err := RunCmd(dir, "mkdir", "app"); err != nil {
+	err = os.MkdirAll(filepath.Join(dir, "app"), 0755)
+	if err != nil {
 		return errors.New("CLI initialization stopped: Unable to create directories")
 	}
 
-	if err := RunCmd(dir, "touch", "app/app.py"); err != nil {
+	_, err = os.Create("app/app.py")
+	if err != nil {
 		return errors.New("CLI initialization stopped: Unable to create files")
 	}
 	pterm.Info.Println("Initialized 'app' directory")

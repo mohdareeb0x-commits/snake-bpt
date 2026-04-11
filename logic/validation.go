@@ -45,7 +45,10 @@ func CheckDependency(name string) error {
 }
 
 func CheckInternet() error {
-	_, err := http.Get("https://clients3.google.com/generate_204")
+	resp, err := http.Get("https://clients3.google.com/generate_204")
+	if err == nil {
+		resp.Body.Close()
+	}
 	if err != nil {
 		return errors.New("No internet connection available")
 	}

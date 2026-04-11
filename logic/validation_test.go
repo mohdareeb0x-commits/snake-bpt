@@ -50,7 +50,7 @@ func TestValidatePort_Valid(t *testing.T) {
 	}
 }
 
-func TestValidatePort_invalid(t *testing.T) {
+func TestValidatePort_Invalid(t *testing.T) {
 	validation := ValidatePort("99999") 
 	if validation == true{
 		t.Errorf("expected invalid port, got valid")
