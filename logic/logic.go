@@ -59,9 +59,9 @@ func AddFastAPI(host string, port string) error {
 		}
 	}
 
-	_, err := exec.Command("ping", "-c", "1", "8.8.8.8").Output()
+	err := CheckInternet()
 	if err != nil {
-		return errors.New("No internet connection")
+		return err
 	}
 
 	_, err = exec.Command("uv", "init", ".").Output()

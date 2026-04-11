@@ -1,8 +1,10 @@
 package logic
 
 import (
+	"errors"
 	"fmt"
 	"net"
+	"net/http"
 	"os/exec"
 	"strconv"
 
@@ -37,6 +39,15 @@ func CheckDependency(name string) error {
 	_, err := exec.LookPath(name)
 	if err != nil {
 		return fmt.Errorf("Dependency Error: %s is not installed or not in PATH", name)
+	}
+
+	return nil
+}
+
+func CheckInternet() error {
+	_, err := http.Get("https://clients3.google.com/generate_204")
+	if err != nil {
+		return errors.New("No internet connection")
 	}
 
 	return nil
