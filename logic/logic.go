@@ -35,7 +35,7 @@ func AddCobra(cliName string) error {
 	}
 
 	if err := RunCmd(dir, "go", "mod", "init", cliName); err != nil {
-		return errors.New("CLI initialization stopped: CLI might be already initialized 1")
+		return errors.New("CLI initialization stopped: CLI might be already initialized")
 	}
 	pterm.Info.Println("Initialized go module")
 
