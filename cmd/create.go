@@ -4,8 +4,6 @@ Copyright © 2026 snake-bpt mohdareeb0x@gmail.com
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
@@ -19,9 +17,8 @@ Use a subcommand to generate a specific type of template.
 Examples:
   snake-bpt create cobra --name my-cli
   snake-bpt create fastapi --host 0.0.0.0 --port 8000`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("create called")
-	},
+	// Run: func(cmd *cobra.Command, args []string) {
+	// },
 }
 
 func init() {
