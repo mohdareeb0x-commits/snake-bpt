@@ -9,7 +9,18 @@ import (
 	"github.com/pterm/pterm"
 )
 
+func RunCmd(dir string, name string, args ...string) error {
+	cmd := exec.Command(name, args...)
+	cmd.Dir = dir
+	return cmd.Run()
+}
+
 func AddCobra(cliName string) error {
+
+	dir, err := os.Getwd()
+	if err != nil {
+		return err
+	}
 
 	deps := []string{"go", "cobra-cli", "git"}
 	for _, dep := range deps {
@@ -18,31 +29,31 @@ func AddCobra(cliName string) error {
 		}
 	}
 
-	_, err := exec.Command("go", "mod", "init", cliName).Output()
+	err = CheckInternet()
 	if err != nil {
-		return errors.New("CLI initialization stopped: CLI might be already initialized")
+		return err
+	}
+
+	if err := RunCmd(dir, "go", "mod", "init", cliName); err != nil {
+		return errors.New("CLI initialization stopped: CLI might be already initialized 1")
 	}
 	pterm.Info.Println("Initialized go module")
 
-	_, err = exec.Command("cobra-cli", "init").Output()
-	if err != nil {
+	if err := RunCmd(dir, "cobra-cli", "init"); err != nil {
 		return errors.New("CLI initialization stopped: CLI might be already initialized")
 	}
 	pterm.Info.Println("Initialized cobra-cli")
 
-	_, err = exec.Command("go", "mod", "tidy").Output()
-	if err != nil {
+	if err := RunCmd(dir, "go", "mod", "tidy"); err != nil {
 		return errors.New("CLI initialization stopped: Unknown Error")
 	}
 
-	_, err = exec.Command("git", "init").Output()
-	if err != nil {
+	if err := RunCmd(dir, "git", "init"); err != nil {
 		return errors.New("CLI initialization stopped: Unable to intialize git")
 	}
 	pterm.Info.Println("Initialized git")
 
-	_, err = exec.Command("touch", ".gitignore").Output()
-	if err != nil {
+	if err := RunCmd(dir, "touch", ".gitignore"); err != nil {
 		return errors.New("CLI initialization stopped: Unable to intialize git")
 	}
 	pterm.Info.Println("Added .gitignore")
@@ -51,7 +62,12 @@ func AddCobra(cliName string) error {
 }
 
 func AddFastAPI(host string, port string) error {
-	
+
+	dir, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+
 	deps := []string{"uv", "git"}
 	for _, dep := range deps {
 		if err := CheckDependency(dep); err != nil {
@@ -59,36 +75,31 @@ func AddFastAPI(host string, port string) error {
 		}
 	}
 
-	err := CheckInternet()
+	err = CheckInternet()
 	if err != nil {
 		return err
 	}
 
-	_, err = exec.Command("uv", "init", ".").Output()
-	if err != nil {
+	if err := RunCmd(dir, "uv", "init", "."); err != nil {
 		return errors.New("FastAPI project initialization stopped: Project might be already initialized")
 	}
 	pterm.Info.Println("Initialized uv project")
 
-	_, err = exec.Command("uv", "add", "fastapi[standard]").Output()
-	if err != nil {
+	if err := RunCmd(dir, "uv", "add", "fastapi[standard]"); err != nil {
 		return errors.New("FastAPI project initialization stopped: Dependencies installation problem")
 	}
 	pterm.Info.Println("Added fastapi[standard]")
 
-	_, err = exec.Command("uv", "add", "uvicorn[standard]").Output()
-	if err != nil {
+	if err := RunCmd(dir, "uv", "add", "uvicorn[standard]"); err != nil {
 		return errors.New("FastAPI project initialization stopped: Dependencies installation problem")
 	}
 	pterm.Info.Println("Added uvicorn[standard]")
 
-	_, err = exec.Command("mkdir", "app").Output()
-	if err != nil {
+	if err := RunCmd(dir, "mkdir", "app"); err != nil {
 		return errors.New("CLI initialization stopped: Unable to create directories")
 	}
-	
-	_, err = exec.Command("touch", "app/app.py").Output()
-	if err != nil {
+
+	if err := RunCmd(dir, "touch", "app/app.py"); err != nil {
 		return errors.New("CLI initialization stopped: Unable to create files")
 	}
 	pterm.Info.Println("Initialized 'app' directory")
@@ -131,4 +142,3 @@ func AddFastAPI(host string, port string) error {
 
 	return nil
 }
-
